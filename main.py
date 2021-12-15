@@ -25,7 +25,3 @@ def my_form_post():
     dur = f"Took {time.time() - t1} to load the file, build the hashtable, and analyze the ayah(s)"
 
     return render_template('ayah_identifier.html', data={'res': res, 'dur': dur})
-
-
-if __name__ == '__main__':
-    app.run()
