@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ayah Identifier</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label for="ayah">Ayah</label>
+            <input type="text" class="form-control" name="ayah" id="ayah" aria-describedby=""
+                   placeholder="Enter Ayah">
+        </div>
+        <button type="submit" class="btn btn-primary">Check</button>
+    </form>
+</div>
+<div class="container">
+    {%if data%}
+    <div id="res">{{data.res}}</div>
+    <div id="dur">{{data.dur}}</div>
+    {%endif%}
+</div>
+</body>
+
+<!--<script>-->
+<!--    $.ajax({-->
+<!--        type: "POST",-->
+<!--        url: '/',-->
+<!--        data: {'ayah': $('#ayah').value},-->
+<!--        success: function (data) {-->
+<!--            let res = data['res']-->
+<!--            let dur = data['dur']-->
+<!--            $('#res').text = res-->
+<!--            $('#dur').text = dur-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
+</html>
