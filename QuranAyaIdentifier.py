@@ -1,9 +1,11 @@
 import json
 import os.path
+import re
 
 
 class AyahIdentifier:
     hash_table = dict()
+    only_arab_chars = '[^ء-ي\s]*'
 
     def __init__(self):
         if not os.path.isfile('output.txt'):
@@ -46,12 +48,17 @@ class AyahIdentifier:
             f.write(str(self.hash_table))
 
     def is_ayah(self, text):
-        words = text.strip().split()
+        words = [re.sub(self.only_arab_chars, '', x) for x in text.strip().split()]
         sub_array = self.hash_table
+        ayah = []
         for w in words:
             if w in sub_array:
+                ayah.append(w)
                 sub_array = sub_array[w]
-            if len(sub_array) == 0:
-                return True
+            elif len(sub_array) == 0:
+                return ayah
+            else:
+                ayah.clear()
+                sub_array = self.hash_table
 
-        return False
+        return ayah if len(ayah) > 0 else []
