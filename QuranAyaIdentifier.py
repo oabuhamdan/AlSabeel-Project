@@ -47,18 +47,18 @@ class AyahIdentifier:
         with open('output.txt', 'w') as f:
             f.write(str(self.hash_table))
 
-    def is_ayah(self, text):
+    def is_ayah(self, text, sub_table):
         words = [re.sub(self.only_arab_chars, '', x) for x in text.strip().split()]
-        sub_array = self.hash_table
-        ayah = []
+        sub_table = self.hash_table if len(sub_table) == 0 else sub_table
+        ayah_words = []
         for w in words:
-            if w in sub_array:
-                ayah.append(w)
-                sub_array = sub_array[w]
-            elif len(sub_array) == 0:
-                return ayah
+            if w in sub_table:
+                ayah_words.append(w)
+                sub_table = sub_table[w]
+            elif len(sub_table) == 0:
+                return ayah_words
             else:
-                ayah.clear()
-                sub_array = self.hash_table
+                ayah_words.clear()
+                sub_table = self.hash_table
 
-        return ayah if len(ayah) > 0 else []
+        return ayah_words if len(ayah_words) > 1 else [], sub_table

@@ -15,14 +15,16 @@ def is_content_Line(line):
 
 
 def process_srt_file(srt):
-    ayah_Identifier = AyahIdentifier()
+    ayah_identifier = AyahIdentifier()
     with open(srt, 'r') as f:
         lines = f.readlines()
-        ayah = []
+        sub_table = {}
+        ayah_words = []
         for line in lines:
             if is_content_Line(line):
-                ayah.append(ayah_Identifier.is_ayah(line))
-                print(ayah)
+                new_words, sub_table = ayah_identifier.is_ayah(line, sub_table)
+                ayah_words += new_words
+                print(ayah_words)
 
 
 process_srt_file('النسوية فكرة غير بريئة.srt')
