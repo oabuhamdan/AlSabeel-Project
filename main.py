@@ -24,9 +24,9 @@ def my_form_post():
     ayahs = []
     if request.files:
         srt_file = request.files["srt_file"]
-        srt_file.save(os.path.join('uploads/', srt_file.filename))
-        ayahs = util.process_srt_file('uploads/' + srt_file.filename)
-        os.remove('uploads/' + srt_file.filename)
+        srt_file.save(os.path.join('', srt_file.filename))
+        ayahs = util.process_srt_file(srt_file.filename)
+        os.remove(srt_file.filename)
     dur = f"Took {time.time() - t1} to load the file, build the hashtable, and analyze the ayah(s)"
 
     return render_template('ayah_identifier.html', data={'ayahs': ayahs, 'dur': dur})
