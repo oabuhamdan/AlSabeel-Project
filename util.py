@@ -33,6 +33,3 @@ def process_srt_file(srt):
                     ayahs.append(ayah_words)
                     ayah_words = []
         return ayahs
-
-
-# print(process_srt_file("d"))
