@@ -26,11 +26,13 @@ def process_srt_file(srt):
             if is_content_line(line):
                 line = keep_letters_only(line)
                 new_words, sub_table = ayah_identifier.is_ayah(line, sub_table)
+                if len(new_words) == 0:
+                    ayah_words = []
                 ayah_words += new_words
-                if len(sub_table) == 0 :
+                if len(sub_table) == 0:
                     ayahs.append(ayah_words)
                     ayah_words = []
         return ayahs
 
 
-# print(process_srt_file("النسوية فكرة غير بريئة.srt"))
+print(process_srt_file("d"))
