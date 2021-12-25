@@ -20,16 +20,14 @@ def process_srt_file(srt):
     with open(srt, 'r') as f:
         lines = f.readlines()
         sub_table = {}
-        ayahs = []
+        complete_ayahs = []
         ayah_words = []
         for line in lines:
             if is_content_line(line):
                 line = keep_letters_only(line)
-                new_words, sub_table = ayah_identifier.is_ayah(line, sub_table)
-                if len(new_words) == 0:
-                    ayah_words = []
-                ayah_words += new_words
-                if len(sub_table) == 0:
-                    ayahs.append(ayah_words)
-                    ayah_words = []
-        return ayahs
+                new_complete_ayahs, sub_table = ayah_identifier.is_ayah(ayah_words, line, sub_table)
+                complete_ayahs += new_complete_ayahs
+        return complete_ayahs
+
+
+# print(process_srt_file('d'))
