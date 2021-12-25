@@ -1,17 +1,18 @@
 import re
+from maha.cleaners.functions import keep_arabic_letters
 
-# pattern = re.compile(".* --> .*")
 from QuranAyaIdentifier import AyahIdentifier
 
 timing = re.compile(".* --> .*\n")
 empty_or_number = re.compile('\d*\n')
 
 
-def is_content_Line(line):
-    if empty_or_number.match(line) or timing.match(line):
-        return False
-    else:
-        return True
+def is_content_line(line):
+    return not (empty_or_number.match(line) or timing.match(line))
+
+
+def keep_letters_only(line):
+    return keep_arabic_letters(line)
 
 
 def process_srt_file(srt):
@@ -19,12 +20,17 @@ def process_srt_file(srt):
     with open(srt, 'r') as f:
         lines = f.readlines()
         sub_table = {}
+        ayahs = []
         ayah_words = []
         for line in lines:
-            if is_content_Line(line):
+            if is_content_line(line):
+                line = keep_letters_only(line)
                 new_words, sub_table = ayah_identifier.is_ayah(line, sub_table)
                 ayah_words += new_words
-                print(ayah_words)
+                if len(sub_table) == 0 or len(ayah_words) > 5:
+                    ayahs.append(ayah_words)
+                    ayah_words = []
+        return ayahs
 
 
-process_srt_file('النسوية فكرة غير بريئة.srt')
+# print(process_srt_file("النسوية فكرة غير بريئة.srt"))

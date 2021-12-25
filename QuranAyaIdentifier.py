@@ -56,8 +56,10 @@ class AyahIdentifier:
                 ayah_words.append(w)
                 sub_table = sub_table[w]
             elif len(sub_table) == 0:
-                return ayah_words
+                return ayah_words, sub_table
             else:
+                if len(ayah_words) > 0:
+                    words.insert(0, w)
                 ayah_words.clear()
                 sub_table = self.hash_table
 
