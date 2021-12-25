@@ -35,4 +35,4 @@ def process_srt_file(srt):
         return ayahs
 
 
-print(process_srt_file("d"))
+# print(process_srt_file("d"))
