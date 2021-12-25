@@ -27,7 +27,7 @@ def process_srt_file(srt):
                 line = keep_letters_only(line)
                 new_words, sub_table = ayah_identifier.is_ayah(line, sub_table)
                 ayah_words += new_words
-                if len(sub_table) == 0 or len(ayah_words) > 5:
+                if len(sub_table) == 0 :
                     ayahs.append(ayah_words)
                     ayah_words = []
         return ayahs
