@@ -1,4 +1,5 @@
 import re
+
 from maha.cleaners.functions import keep_arabic_letters
 
 from QuranAyaIdentifier import AyahIdentifier
@@ -29,5 +30,9 @@ def process_srt_file(srt):
                 complete_ayahs += new_complete_ayahs
         return complete_ayahs
 
+
+def list_ayahs(prefix):
+    ayah_identifier = AyahIdentifier()
+    return ayah_identifier.list_ayahs(prefix)
 
 # print(process_srt_file('d'))

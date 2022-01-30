@@ -73,3 +73,12 @@ class AyahIdentifier:
             complete_ayahs.append(ayah_words.copy())
             ayah_words.clear()
         return complete_ayahs, sub_table
+
+    def list_ayahs(self, prefix):
+        words = [re.sub(self.only_arab_chars, '', x) for x in prefix.strip().split()]
+        sub_table = self.hash_table
+        for w in words:
+            if w in sub_table:
+                sub_table = sub_table[w]
+
+        return sub_table
